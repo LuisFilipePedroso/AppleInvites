@@ -13,6 +13,19 @@ struct IntroPage: View {
     var body: some View {
         ZStack {
             AmbientBackground()
+            
+            VStack(spacing: 40) {
+                InfiniteScrollView {
+                    ForEach(cards) { card in
+                        CarouselCardView(card)
+                    }
+                }
+                .scrollIndicators(.hidden)
+                .containerRelativeFrame(.vertical) { value, _ in
+                    value * 0.45
+                }
+            }
+            .safeAreaPadding(15)
         }
     }
     
